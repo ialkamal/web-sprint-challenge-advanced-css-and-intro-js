@@ -228,6 +228,7 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
+console.log("TASK 1");
 console.log("Name of the first artist is: " + artists[0].name);
 console.log("\n");
 
@@ -236,6 +237,7 @@ console.log("\n");
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
+console.log("TASK 2");
 let removeLastName = artists[8].name.split(" ");
 removeLastName.pop();
 removeLastName.push("Gogh");
@@ -255,6 +257,7 @@ function getArtistByIndex(array, index) {
   return `The artist at index ${index} is ${array[index].name}.`;
 }
 
+console.log("TASK 3");
 console.log(getArtistByIndex(artists, 0));
 console.log(getArtistByIndex(artists, 2));
 console.log(getArtistByIndex(artists, 8));
@@ -277,6 +280,7 @@ function get20s(data) {
   return array20s;
 }
 
+console.log("TASK 4");
 console.log(get20s(artists));
 console.log("\n");
 
@@ -295,6 +299,7 @@ function removeArtist(data, index) {
   console.log(data.length);
 }
 
+console.log("TASK 5");
 removeArtist(artists, 0);
 console.log("\n");
 
@@ -326,6 +331,7 @@ addArtist(artists, {
     "I'm Ismail AlKamal, a director at AlKamal International, a Saudi construction business as well as a part-time entrepreneur experimenting with building and growing my own businesses since 2008.",
 });
 
+console.log("TASK 6");
 console.log(artists[artists.length - 1]);
 console.log("\n");
 
@@ -346,6 +352,7 @@ function lotsOfArt(data) {
   return lotsofArtArray;
 }
 
+console.log("TASK 7");
 console.log(lotsOfArt(artists));
 console.log("\n");
 
@@ -371,14 +378,60 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */) {
-  /* Code here */
+function getHTML(data) {
+  for (let i in data) {
+    console.log(
+      `<div id="artist">
+      <div class="image">
+          <img src=""/>
+      </div>
+      <div class = "name">
+         <a href=${data[i].wikipedia}> ${data[i].name}</a>
+      </div>
+      <div class = "bio">${data[i].bio}</div>
+      </div>`
+    );
+  }
 }
+
+console.log("STRETCH 1");
+getHTML(artists);
+console.log("\n");
 
 /* STRETCH 2: Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */) {
-  /* Code here */
+function randomize(data) {
+  const randomArray = [];
+  let rIndex = 0;
+  const dataCopy = [...data];
+  const dataLength = data.length;
+
+  for (let i = 0; i < dataLength; i++) {
+    rIndex = Math.floor((dataLength - i) * Math.random());
+    randomArray.push(dataCopy[rIndex]);
+    dataCopy.splice(rIndex, 1);
+  }
+
+  return randomArray;
 }
 
+console.log("STRETCH 2");
+console.log(randomize(artists));
+console.log("\n");
+
 /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
+
+function get20sAdvanced(data) {
+  const newData = data.filter((el) => {
+    let year = el.years.split(" ");
+    return Number(year[0]) >= 1900 && Number(year[2]) <= 2000;
+  });
+
+  return newData.map((el) => {
+    return el.name;
+  });
+}
+
+console.log("STRETCH 3");
+console.log(get20sAdvanced(artists));
+console.log("\n");
